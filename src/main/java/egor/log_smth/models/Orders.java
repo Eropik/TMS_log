@@ -11,25 +11,34 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name="order")
-public class Order {
+@Table(name="orders")
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long orders_id;
+    private long order_id;
 
 
     private long customer_id;
 
     private String license_plate;
 
-    private String order_date;
+    private long route_id;
+
+    private long cargo_id;
+
+
+    private LocalDateTime order_date;
+
+
+    @PrePersist
+    private void init(){order_date=LocalDateTime.now();}
+
 
     private String status;
 
     private LocalDateTime dateOfCreation;
 
-    @PrePersist
-    private void init(){dateOfCreation=LocalDateTime.now();}
+
 
 
 }
